@@ -206,3 +206,9 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# HASSAS VE GEREKSİZ KLASÖRLER
+.DS_Store
+venv_yeni/
+LexMove-ChatBot/
+chroma_db_lexmove_mini/

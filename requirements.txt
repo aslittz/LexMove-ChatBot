@@ -1,0 +1,21 @@
+# Core RAG Bileşenleri
+langchain-core==1.0.0
+langchain-community==0.4
+langchain-huggingface==1.0.0
+chromadb==1.2.1
+pydantic==2.12.3
+
+# LLM ve Embeddings
+langchain-google-genai==3.0.0
+google-generativeai==0.3.2
+sentence-transformers==5.1.1
+protobuf==4.25.8
+
+# Veri ve Araçlar
+pandas==2.3.3
+datasets==4.2.0
+python-dotenv==1.1.1
+typing-extensions==4.15.0
+
+# Web Arayüzü
+streamlit==1.50.0
