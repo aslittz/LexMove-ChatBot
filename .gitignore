@@ -54,7 +54,8 @@ cover/
 # Translations
 *.mo
 *.pot
-
+.env
+chroma_db_lexmove_mini/
 # Django stuff:
 *.log
 local_settings.py
