@@ -1,0 +1,15 @@
+streamlit==1.39.0
+langchain==0.2.16
+langchain-core==0.2.38
+langchain-community==0.2.16
+langchain-google-genai==1.0.10
+google-generativeai==0.7.2
+sentence-transformers==2.7.0
+chromadb==0.4.24
+datasets==2.20.0
+pandas==2.2.2
+python-dotenv==1.0.1
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.3.1+cpu
+torchvision==0.18.1+cpu
+torchaudio==2.3.1+cpu
