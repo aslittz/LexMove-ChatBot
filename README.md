@@ -415,8 +415,7 @@ Türk Hukuku (Mini Q&A) veri seti ile desteklenen yapay zeka danışmanı.
 └─────────────────────────────────────┘
 
 ┌─────────────────────────────────────┐
-│ 🤖 İş sözleşmesinin feshi, İş      │
-│    Kanunu'nun 24. ve 25...          │
+│ 🤖 Kamusallaştırma nedir ?       │
 └─────────────────────────────────────┘
 ```
 
@@ -508,60 +507,28 @@ git push origin main
 
 ---
 
-## 🤝 Katkıda Bulunma
-
-Katkılarınızı bekliyoruz! Lütfen şu adımları izleyin:
-
-1. **Fork** edin
-2. **Feature branch** oluşturun (`git checkout -b feature/AmazingFeature`)
-3. **Commit** edin (`git commit -m 'Add some AmazingFeature'`)
-4. **Push** edin (`git push origin feature/AmazingFeature`)
-5. **Pull Request** açın
-
-### Geliştirme Yol Haritası
-
-- [ ] Multi-language support
-- [ ] Advanced filtering
-- [ ] Citation system
-- [ ] PDF export
-- [ ] API endpoint
-
----
 
 ## 📄 Lisans
 
 Bu proje MIT Lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
 
----
+## Kullanılan Veri Seti :
+LexMove geliştirilirken açık kaynaklı veriseti kullanılmıştır.
+Alan	              Bilgi
+Veri Seti Adı	:Turkish Law Chatbot Dataset
+Yayıncı :  	Renicames (Hugging Face)
+Lisans :MIT Lisansı
+Kaynak:	https://huggingface.co/datasets/Renicames/turkish-law-chatbot
 
-## 👨‍💻 Geliştirici
 
-**[Adınız Soyadınız]**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
-- Email: your.email@example.com
-
----
 
 ## 🎓 Akbank GenAI Bootcamp
 
-Bu proje, **Akbank GenAI Bootcamp: Yeni Nesil Proje Kampı** kapsamında geliştirilmiştir.
+Bu proje, **Akbank GenAI Bootcamp: Yeni Nesil Proje Kampı için geliştirilmiştir.
 
 - **Bootcamp:** Akbank & Global AI Hub
-- **Tarih:** 2024
-- **Konu:** RAG-based Chatbot Development
-
----
-
-## 🙏 Teşekkürler
-
-- **Akbank & Global AI Hub** - Bootcamp organizasyonu
-- **Hugging Face** - Dataset hosting
-- **Google** - Gemini API
-- **LangChain** - RAG framework
-- **Streamlit** - Web framework
-
----
+- **Tarih:** 2025
+- **Konu:** Rag Temelli Hukuk Chatbot'u Geliştirmek 
 
 ## 📚 Kaynaklar
 
@@ -575,9 +542,13 @@ Bu proje, **Akbank GenAI Bootcamp: Yeni Nesil Proje Kampı** kapsamında gelişt
 
 <div align="center">
 
-**⭐ Projeyi beğendiyseniz yıldız vermeyi unutmayın!**
+👨‍💻 Geliştirici :
+Aslı Nur Tunus 
+Linkedin:https://www.linkedin.com/in/aslı-nur-tunus-3b1512207/
+Github:https://github.com/aslittz
+E-mail : aslinurtunus@gmail.com
 
-Made with ❤️ for Akbank GenAI Bootcamp
+
 
 [🔝 Başa Dön](#️-lexmove-rag-chatbot)
 
