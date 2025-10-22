@@ -1,55 +1,36 @@
 # ================================================================
-# REQUIREMENTS.TXT - STREAMLIT CLOUD OPTIMIZED VERSION
+# REQUIREMENTS.TXT - ULTRA MINIMAL (Streamlit Cloud Guaranteed)
 # ================================================================
-# Son güncelleme: 2025
-# Streamlit Cloud ile test edilmiştir
+# Sadece kesinlikle gerekli paketler, en son stabil versiyonlar
 # ================================================================
 
 # Web Framework
-streamlit==1.41.1
+streamlit==1.39.0
 
-# LangChain Core
-langchain==0.3.18
-langchain-core==0.3.28
-langchain-community==0.3.18
+# LangChain Essentials
+langchain==0.2.16
+langchain-core==0.2.38
+langchain-community==0.2.16
 
-# LLM Integrations
-langchain-google-genai==2.0.9
-google-generativeai==0.8.3
+# Google Gemini
+langchain-google-genai==1.0.10
+google-generativeai==0.7.2
 
-# Embeddings & HuggingFace
-langchain-huggingface==0.1.2
-sentence-transformers==3.3.1
-transformers==4.48.1
-huggingface-hub==0.28.1
+# Embeddings
+sentence-transformers==2.7.0
 
 # Vector Database
-chromadb==0.5.23
+chromadb==0.4.24
 
-# Data Processing
-datasets==3.2.0
-pandas==2.2.3
+# Data
+datasets==2.20.0
+pandas==2.2.2
 
-# Utilities
+# Utils
 python-dotenv==1.0.1
-pydantic==2.10.6
-typing-extensions==4.12.2
 
-# Tokenizers
-tokenizers==0.21.0
-
-# Core Dependencies
-numpy==1.26.4
-protobuf==4.25.5
-requests==2.32.3
-urllib3==2.2.3
-certifi==2024.12.14
-
-# ================================================================
-# TORCH - CPU ONLY (Streamlit Cloud için optimize edilmiş)
-# ================================================================
-# Not: GPU olmayan ortamlar için CPU versiyonu kullanılır
-# Bu, Streamlit Cloud'da daha hızlı kurulum sağlar
-# ================================================================
+# PyTorch CPU-only (kritik!)
 --extra-index-url https://download.pytorch.org/whl/cpu
-torch==2.5.1+cpu
+torch==2.3.1+cpu
+torchvision==0.18.1+cpu
+torchaudio==2.3.1+cpu
