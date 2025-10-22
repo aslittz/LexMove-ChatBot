@@ -2,7 +2,7 @@
 
 Türk hukuku konusunda uzmanlaşmış, RAG (Retrieval Augmented Generation) teknolojisi ile geliştirilmiş yapay zeka destekli soru-cevap sistemi.
 
-## 🚀 [Demo'yu Deneyin](https://your-app-name.streamlit.app)
+## 🚀 [Demo'yu Deneyin](https://lexmove-chatbot.streamlit.app)
 
 > **Not:** İlk açılışta 2-3 dakika bekleyebilirsiniz (database otomatik oluşturuluyor).
 
