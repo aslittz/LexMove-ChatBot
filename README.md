@@ -1,14 +1,14 @@
-# ⚖️ LexMove RAG Chatbot
+# LexMove RAG Chatbot
 
 Türk hukuku konusunda uzmanlaşmış, RAG (Retrieval Augmented Generation) teknolojisi ile geliştirilmiş yapay zeka destekli soru-cevap sistemi.
 
-## 🚀 [Demo'yu Deneyin](https://lexmove-chatbot.streamlit.app)
+##  [Demo'yu Deneyin](https://lexmove-chatbot.streamlit.app)
 
 > **Not:** İlk açılışta 2-3 dakika bekleyebilirsiniz (database otomatik oluşturuluyor).
 
 ---
 
-## 📋 İçindekiler
+##  İçindekiler
 
 - [Proje Hakkında](#-proje-hakkında)
 - [Özellikler](#-özellikler)
@@ -25,16 +25,16 @@ Türk hukuku konusunda uzmanlaşmış, RAG (Retrieval Augmented Generation) tekn
 
 ---
 
-## 🎯 Proje Hakkında
+##  Proje Hakkında
 
 LexMove, Akbank GenAI Bootcamp kapsamında geliştirilmiş bir RAG chatbot uygulamasıdır. Proje, Türk hukuku ile ilgili soruları yanıtlamak için Retrieval Augmented Generation (RAG) teknolojisini kullanır. Kullanıcılar, hukuki sorularını doğal dilde sorabilir ve sistem, veri setindeki en alakalı bilgileri kullanarak güvenilir yanıtlar üretir.
 
 ### Projenin Amacı
 
-- ✅ Türk hukukuna dair soruları hızlı ve güvenilir şekilde yanıtlamak
-- ✅ RAG teknolojisini kullanarak halüsinasyon (uydurma) riskini minimize etmek
-- ✅ Vektör veritabanı ile semantik arama yaparak en alakalı bilgileri bulmak
-- ✅ Kullanıcı dostu bir web arayüzü sunmak
+-  Türk hukukuna dair soruları hızlı ve güvenilir şekilde yanıtlamak
+-  RAG teknolojisini kullanarak halüsinasyon (uydurma) riskini minimize etmek
+-  Vektör veritabanı ile semantik arama yaparak en alakalı bilgileri bulmak
+-  Kullanıcı dostu bir web arayüzü sunmak
 
 ### Çözdüğü Problem
 
@@ -45,19 +45,19 @@ Geleneksel LLM'ler güncel veya spesifik domain bilgisi konusunda yetersiz kalab
 
 ---
 
-## ✨ Özellikler
+##  Özellikler
 
-- 🤖 **Google Gemini 2.0 Flash** ile doğal dil işleme
-- 📚 **ChromaDB** vektör veritabanı ile semantik arama
-- 🧠 **Sentence Transformers** ile Türkçe embedding desteği
-- 🔄 **Otomatik Database Kurulumu** (ilk çalıştırmada)
-- 💬 **Sohbet Geçmişi** ile bağlamsal konuşma
-- 🎨 **Modern Streamlit Arayüzü**
-- ☁️ **Streamlit Cloud'da Deploy** edilebilir
+-  **Google Gemini 2.0 Flash** ile doğal dil işleme
+-  **ChromaDB** vektör veritabanı ile semantik arama
+-  **Sentence Transformers** ile Türkçe embedding desteği
+-  **Otomatik Database Kurulumu** (ilk çalıştırmada)
+-  **Sohbet Geçmişi** ile bağlamsal konuşma
+-  **Modern Streamlit Arayüzü**
+-  **Streamlit Cloud'da Deploy** edilebilir
 
 ---
 
-## 📊 Veri Seti
+##  Veri Seti
 
 ### Dataset: [Turkish Law Chatbot](https://huggingface.co/datasets/Renicames/turkish-law-chatbot)
 
@@ -99,7 +99,7 @@ Document(
 
 ---
 
-## 🛠️ Kullanılan Teknolojiler
+##  Kullanılan Teknolojiler
 
 ### LLM & Embeddings
 - **Google Gemini 2.0 Flash** - Text generation
@@ -122,7 +122,7 @@ Document(
 
 ---
 
-## 🏗️ Çözüm Mimarisi
+##  Çözüm Mimarisi
 
 ### RAG Pipeline Akışı
 
@@ -232,14 +232,14 @@ YANIT:
 ```
 
 **Prompt Stratejisi:**
-- ✅ Strict grounding (sadece context kullan)
-- ✅ Hallucination prevention (uydurma yapma)
-- ✅ Türkçe output formatting
-- ✅ Politeness & clarity
+-  Strict grounding (sadece context kullan)
+-  Hallucination prevention (uydurma yapma)
+-  Türkçe output formatting
+-  Politeness & clarity
 
 ---
 
-## 🚀 Kurulum
+##  Kurulum
 
 ### Gereksinimler
 
@@ -318,7 +318,7 @@ Tarayıcınızda otomatik olarak açılacak: `http://localhost:8501`
 
 ---
 
-## 📖 Kullanım
+## Kullanım
 
 ### Web Arayüzü
 
@@ -341,14 +341,14 @@ Tarayıcınızda otomatik olarak açılacak: `http://localhost:8501`
 
 ### Örnek Sorular
 
-#### ✅ İyi Sorular:
+####  İyi Sorular:
 ```
 - "Boşanma davası nasıl açılır?"
 - "Kira sözleşmesi süresi ne kadardır?"
 - "İşçi tazminat hakları nelerdir?"
 ```
 
-#### ❌ Veri Seti Dışı Sorular:
+####  Veri Seti Dışı Sorular:
 ```
 - "Bugün hava nasıl?" (veri setinde yok)
 - "Python nasıl öğrenilir?" (domain dışı)
@@ -358,7 +358,7 @@ Tarayıcınızda otomatik olarak açılacak: `http://localhost:8501`
 
 ---
 
-## 📁 Proje Yapısı
+##  Proje Yapısı
 
 ```
 lexmove-rag-chatbot/
@@ -398,47 +398,47 @@ lexmove-rag-chatbot/
 
 ---
 
-## 📸 Ekran Görüntüleri
+##  Ekran Görüntüleri
 
 ### Ana Arayüz
 ```
-⚖️ LexMove Hukuk Chatbotu
+ LexMove Hukuk Chatbotu
 Türk Hukuku (Mini Q&A) veri seti ile desteklenen yapay zeka danışmanı.
 
 ┌─────────────────────────────────────┐
-│ 🤖 Merhaba! Türk hukuku ile ilgili │
+│  Merhaba! Türk hukuku ile ilgili │
 │    sorularınızı cevaplayabilirim.   │
 └─────────────────────────────────────┘
 
 ┌─────────────────────────────────────┐
-│ 👤 İş sözleşmesi nasıl feshedilir? │
+│  İş sözleşmesi nasıl feshedilir? │
 └─────────────────────────────────────┘
 
 ┌─────────────────────────────────────┐
-│ 🤖 Kamusallaştırma nedir ?       │
+│  Kamusallaştırma nedir ?       │
 └─────────────────────────────────────┘
 ```
 
 ### Sidebar - Sistem Durumu
 ```
-🔧 Sistem Durumu
-✅ Database aktif
-📊 Toplam Vektör: 1,245
-✅ LLM hazır (Gemini 2.0)
+ Sistem Durumu
+ Database aktif
+ Toplam Vektör: 1,245
+ LLM hazır (Gemini 2.0)
 
-📖 Kullanım İpuçları
+ Kullanım İpuçları
 - Türk hukuku hakkında soru sorun
 - Net ve spesifik sorular sorun
 
-ℹ️ Proje Bilgileri
-🤖 Model: Gemini 2.0 Flash
-📊 Vector DB: ChromaDB
-🧠 Embedding: all-MiniLM-L6-v2
+ Proje Bilgileri
+ Model: Gemini 2.0 Flash
+ Vector DB: ChromaDB
+ Embedding: all-MiniLM-L6-v2
 ```
 
 ---
 
-## 📈 Sonuçlar ve Değerlendirme
+##  Sonuçlar ve Değerlendirme
 
 ### Başarı Metrikleri
 
@@ -452,31 +452,31 @@ Türk Hukuku (Mini Q&A) veri seti ile desteklenen yapay zeka danışmanı.
 
 ### Güçlü Yönler
 
-✅ **Doğruluk:** Sadece veri setindeki bilgileri kullanır  
-✅ **Şeffaflık:** "Bilmiyorum" diyebiliyor  
-✅ **Hız:** 2-4 saniyede yanıt  
-✅ **Maliyet:** Düşük token kullanımı (context grounding)  
-✅ **Kullanıcı Deneyimi:** Sezgisel arayüz  
+ **Doğruluk:** Sadece veri setindeki bilgileri kullanır  
+ **Şeffaflık:** "Bilmiyorum" diyebiliyor  
+ **Hız:** 2-4 saniyede yanıt  
+ **Maliyet:** Düşük token kullanımı (context grounding)  
+ **Kullanıcı Deneyimi:** Sezgisel arayüz  
 
 ### Sınırlamalar
 
-⚠️ **Veri Seti Kapsam:** Sadece veri setindeki konular  
-⚠️ **Güncellik:** Dataset statik (real-time güncelleme yok)  
-⚠️ **Context Window:** Maksimum 8 doküman  
-⚠️ **Dil:** Sadece Türkçe  
+ **Veri Seti Kapsam:** Sadece veri setindeki konular  
+ **Güncellik:** Dataset statik (real-time güncelleme yok)  
+ **Context Window:** Maksimum 8 doküman  
+ **Dil:** Sadece Türkçe  
 
 ### Gelecek Geliştirmeler
 
-🔮 **Planlanan İyileştirmeler:**
-- 📝 Daha geniş veri seti entegrasyonu
-- 🔄 Periyodik veri güncelleme
-- 🌐 Çoklu kaynak desteği (mevzuat siteleri, içtihatlar)
-- 📊 Kullanıcı feedback mekanizması
-- 🎯 Domain-specific fine-tuning
+ **Planlanan İyileştirmeler:**
+-  Daha geniş veri seti entegrasyonu
+-  Periyodik veri güncelleme
+-  Çoklu kaynak desteği (mevzuat siteleri, içtihatlar)
+-  Kullanıcı feedback mekanizması
+-  Domain-specific fine-tuning
 
 ---
 
-## 🚀 Streamlit Cloud Deployment
+##  Streamlit Cloud Deployment
 
 ### Adım 1: GitHub'a Push
 
@@ -508,7 +508,7 @@ git push origin main
 ---
 
 
-## 📄 Lisans
+## Lisans
 
 Bu proje MIT Lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
 
@@ -522,7 +522,7 @@ Kaynak:	https://huggingface.co/datasets/Renicames/turkish-law-chatbot
 
 
 
-## 🎓 Akbank GenAI Bootcamp
+##  Akbank GenAI Bootcamp
 
 Bu proje, **Akbank GenAI Bootcamp: Yeni Nesil Proje Kampı için geliştirilmiştir.
 
@@ -530,7 +530,7 @@ Bu proje, **Akbank GenAI Bootcamp: Yeni Nesil Proje Kampı için geliştirilmiş
 - **Tarih:** 2025
 - **Konu:** Rag Temelli Hukuk Chatbot'u Geliştirmek 
 
-## 📚 Kaynaklar
+##  Kaynaklar
 
 - [Gemini API Documentation](https://ai.google.dev/gemini-api/docs)
 - [LangChain Documentation](https://python.langchain.com/)
@@ -542,7 +542,7 @@ Bu proje, **Akbank GenAI Bootcamp: Yeni Nesil Proje Kampı için geliştirilmiş
 
 <div align="center">
 
-👨‍💻 Geliştirici :
+ Geliştirici :
 Aslı Nur Tunus 
 Linkedin:https://www.linkedin.com/in/aslı-nur-tunus-3b1512207/
 Github:https://github.com/aslittz
@@ -550,6 +550,6 @@ E-mail : aslinurtunus@gmail.com
 
 
 
-[🔝 Başa Dön](#️-lexmove-rag-chatbot)
+[ Başa Dön](#️-lexmove-rag-chatbot)
 
 </div>
