@@ -1,7 +1,3 @@
-# ================================================================
-# STREAMLIT CHATBOT UYGULAMASI (app.py) - STREAMLIT CLOUD VERSIYONU
-# ================================================================
-
 import os
 import sys
 import subprocess
@@ -12,9 +8,8 @@ from typing import List
 
 warnings.filterwarnings('ignore')
 
-print("📦 Modüller yükleniyor...")
+print("Modüller yükleniyor...")
 
-# LangChain bileşenleri - Uyumlu import
 try:
     from langchain_google_genai import ChatGoogleGenerativeAI
 except ImportError:
@@ -39,51 +34,42 @@ except ImportError:
     from langchain.prompts import ChatPromptTemplate
     from langchain.schema.output_parser import StrOutputParser
 
-print("✅ Tüm modüller yüklendi")
+print("Tüm modüller yüklendi")
 
-# ================================================================
-# SAYFA AYARLARI
-# ================================================================
+
 st.set_page_config(
     page_title="LexMove RAG Chatbot", 
     layout="centered",
     initial_sidebar_state="expanded"
 )
 
-# Başlıklar
-st.title("⚖️ LexMove Hukuk Chatbotu")
+st.title("LexMove Hukuk Chatbotu")
 st.markdown("Türk Hukuku (Mini Q&A) veri seti ile desteklenen yapay zeka danışmanı.")
 
-# ================================================================
-# 1. AYARLAR VE VERİTABANI BAĞLANTISI
-# ================================================================
 
-# Proje içi yol kullanımı
+
 BASE_DIR = Path(__file__).parent.absolute()
 CHROMA_PATH = BASE_DIR / "chroma_db_lexmove_mini"
 COLLECTION_NAME = "mevzuat_chunks_mini" 
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 
-# ================================================================
-# 2. OTOMATİK DATABASE KURULUMU
-# ================================================================
 
 @st.cache_resource(show_spinner=False)
 def setup_database_if_needed():
     """ChromaDB yoksa otomatik oluştur"""
     
-    # Database zaten varsa skip
+
     if CHROMA_PATH.exists():
         try:
             files = list(CHROMA_PATH.glob("*"))
             if len(files) > 0:
-                return True  # Database mevcut
+                return True  
         except:
             pass
     
-    # Database yok, oluştur
-    st.info("🔄 İlk kurulum yapılıyor... (Bu işlem 2-3 dakika sürebilir)")
-    st.info("📦 Hugging Face'ten veri seti indiriliyor ve işleniyor...")
+
+    st.info(" İlk kurulum yapılıyor... (Bu işlem 2-3 dakika sürebilir)")
+    st.info(" Hugging Face'ten veri seti indiriliyor ve işleniyor...")
     
     progress_bar = st.progress(0)
     status_text = st.empty()
@@ -92,7 +78,7 @@ def setup_database_if_needed():
         status_text.text("⏳ setup_database.py çalıştırılıyor...")
         progress_bar.progress(25)
         
-        # setup_database.py'yi çalıştır
+
         result = subprocess.run(
             [sys.executable, str(BASE_DIR / "setup_database.py")],
             capture_output=True,
@@ -101,65 +87,63 @@ def setup_database_if_needed():
         )
         
         progress_bar.progress(75)
-        status_text.text("✅ Database oluşturuldu, yükleniyor...")
+        status_text.text(" Database oluşturuldu, yükleniyor...")
         
         # Başarı kontrolü
         if CHROMA_PATH.exists() and len(list(CHROMA_PATH.glob("*"))) > 0:
             progress_bar.progress(100)
             status_text.empty()
-            st.success("✅ Database başarıyla oluşturuldu!")
+            st.success("Database başarıyla oluşturuldu!")
             st.balloons()
             return True
         else:
-            st.error("❌ Database oluşturulamadı!")
+            st.error(" Database oluşturulamadı!")
             return False
             
     except subprocess.CalledProcessError as e:
         progress_bar.empty()
         status_text.empty()
-        st.error("❌ Database kurulum hatası!")
+        st.error(" Database kurulum hatası!")
         st.error(f"Detay: {e.stderr}")
-        st.info("💡 Lütfen sayfayı yenileyin ve tekrar deneyin.")
+        st.info(" Lütfen sayfayı yenileyin ve tekrar deneyin.")
         return False
     except Exception as e:
         progress_bar.empty()
         status_text.empty()
-        st.error(f"❌ Beklenmeyen hata: {str(e)}")
+        st.error(f" Beklenmeyen hata: {str(e)}")
         return False
 
-# ================================================================
-# 3. VEKTÖRSTORE VE LLM YÜKLENMESİ
-# ================================================================
+
 
 @st.cache_resource
 def get_vectorstore():
     """ChromaDB vektör veritabanını yükler"""
     
-    # Yol kontrolü
+  
     if not CHROMA_PATH.exists():
-        st.error(f"❌ HATA: ChromaDB klasörü bulunamadı!")
-        st.error(f"📂 Aranan yer: {CHROMA_PATH}")
+        st.error(f" HATA: ChromaDB klasörü bulunamadı!")
+        st.error(f" Aranan yer: {CHROMA_PATH}")
         return None
     
-    # Klasör içeriği kontrolü
+
     try:
         files_in_chroma = list(CHROMA_PATH.glob("*"))
         if len(files_in_chroma) == 0:
-            st.error("❌ ChromaDB klasörü boş!")
+            st.error(" ChromaDB klasörü boş!")
             return None
     except Exception as e:
-        st.error(f"❌ Klasör okunamadı: {e}")
+        st.error(f" Klasör okunamadı: {e}")
         return None
     
     try:
-        # Embeddings modelini yükle
+
         embeddings = HuggingFaceEmbeddings(
             model_name=EMBEDDING_MODEL,
             model_kwargs={'device': 'cpu'},
             encode_kwargs={'normalize_embeddings': True}
         )
         
-        # ChromaDB'yi yükle
+
         vectorstore = Chroma(
             persist_directory=str(CHROMA_PATH),
             embedding_function=embeddings,
@@ -173,13 +157,13 @@ def get_vectorstore():
             chunk_count = 0
         
         if chunk_count == 0:
-            st.error("❌ ChromaDB boş! Hiç vektör bulunamadı.")
+            st.error(" ChromaDB boş! Hiç vektör bulunamadı.")
             return None
         
         return vectorstore
         
     except Exception as e:
-        st.error(f"❌ ChromaDB bağlantı hatası:")
+        st.error(f" ChromaDB bağlantı hatası:")
         st.exception(e)
         return None
 
@@ -187,7 +171,6 @@ def get_vectorstore():
 def get_llm():
     """Google Gemini LLM'i başlatır"""
     
-    # Streamlit Cloud secrets'tan oku (öncelik)
     try:
         api_key = st.secrets["GOOGLE_API_KEY"]
     except:
@@ -197,10 +180,10 @@ def get_llm():
         api_key = os.getenv('GOOGLE_API_KEY')
     
     if not api_key:
-        st.error("🚨 HATA: GOOGLE_API_KEY bulunamadı!")
-        st.info("💡 Streamlit Cloud için:")
+        st.error(" HATA: GOOGLE_API_KEY bulunamadı!")
+        st.info("Streamlit Cloud için:")
         st.code("App Settings → Secrets → GOOGLE_API_KEY ekleyin", language='text')
-        st.info("💡 Yerel çalışma için:")
+        st.info("Yerel çalışma için:")
         st.code('GOOGLE_API_KEY=your_api_key_here', language='bash')
         st.info("API anahtarı almak için: https://ai.google.dev/")
         return None
@@ -214,55 +197,48 @@ def get_llm():
         )
         return llm
     except Exception as e:
-        st.error(f"❌ LLM başlatma hatası:")
+        st.error(f"LLM başlatma hatası:")
         st.exception(e)
-        st.info("💡 API anahtarınızın geçerli olduğundan emin olun")
+        st.info(" API anahtarınızın geçerli olduğundan emin olun")
         return None
 
-# ================================================================
-# SİSTEM BAŞLATMA
-# ================================================================
 
-# Sidebar bilgileri
+
 with st.sidebar:
-    st.markdown("### 🔧 Sistem Durumu")
+    st.markdown("###  Sistem Durumu")
     
-    # Database durumu
     if CHROMA_PATH.exists() and len(list(CHROMA_PATH.glob("*"))) > 0:
-        st.success("✅ Database aktif")
+        st.success(" Database aktif")
     else:
-        st.warning("⏳ Database kurulumu gerekli")
+        st.warning(" Database kurulumu gerekli")
 
-# Database kurulumunu kontrol et
-with st.spinner("🔄 Sistem hazırlanıyor..."):
+with st.spinner(" Sistem hazırlanıyor..."):
     db_ready = setup_database_if_needed()
     
     if not db_ready:
-        st.error("❌ Sistem başlatılamadı. Lütfen sayfayı yenileyin.")
+        st.error(" Sistem başlatılamadı. Lütfen sayfayı yenileyin.")
         st.stop()
 
-# Sistemleri başlat
-with st.spinner("📦 Bileşenler yükleniyor..."):
+# 
+with st.spinner("Bileşenler yükleniyor..."):
     vectorstore = get_vectorstore()
     llm = get_llm()
 
-# Sidebar güncellemeleri
+
 with st.sidebar:
     if vectorstore:
         try:
             chunk_count = vectorstore._collection.count()
-            st.metric("📊 Toplam Vektör", f"{chunk_count:,}")
+            st.metric(" Toplam Vektör", f"{chunk_count:,}")
         except:
             pass
     
     if llm:
-        st.success("✅ LLM hazır (Gemini 2.0)")
+        st.success("LLM hazır (Gemini 2.0)")
     else:
-        st.error("❌ LLM başlatılamadı")
+        st.error(" LLM başlatılamadı")
 
-# ================================================================
-# 4. RAG FONKSİYONLARI VE ZİNCİRİ
-# ================================================================
+
 
 def format_docs(docs: List[Document]) -> str:
     """Çekilen document listesini tek bir string bağlamına dönüştürür."""
@@ -277,10 +253,9 @@ def retrieve_relevant_chunks(query: str, k: int = 8) -> List[Document]:
     try:
         return vectorstore.similarity_search(query=query, k=k)
     except Exception as e:
-        st.error(f"❌ Vektör arama hatası: {e}")
+        st.error(f" Vektör arama hatası: {e}")
         return []
 
-# Prompt Şablonu
 RAG_PROMPT_TEMPLATE = """
 Sen, Türk hukuku konusunda uzmanlaşmış, yapay zeka destekli bir danışmansın.
 Görevinde sadece, sana aşağıda sağlanan 'BAĞLAM' içerisindeki bilgileri kullanmalısın.
@@ -305,7 +280,6 @@ SENİN YANITIN:
 
 RAG_PROMPT = ChatPromptTemplate.from_template(RAG_PROMPT_TEMPLATE)
 
-# RAG Zinciri oluştur
 if llm and vectorstore:
     rag_chain = (
         {
@@ -319,11 +293,9 @@ if llm and vectorstore:
 else:
     rag_chain = None
 
-# ================================================================
-# 5. STREAMLIT ARAYÜZÜ
-# ================================================================
 
-# Sohbet geçmişini başlat
+
+
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
         {
@@ -332,59 +304,47 @@ if "messages" not in st.session_state:
         }
     ]
 
-# Sohbet geçmişini göster
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.write(msg["content"])
 
-# Kullanıcı girişi
 user_input = st.chat_input(placeholder="Hukuki sorunuzu buraya yazın...")
 
 if user_input:
-    # Sistem hazır değilse uyarı ver
     if not rag_chain:
-        st.error("⚠️ Sistem henüz hazır değil. Lütfen yukarıdaki hataları kontrol edin.")
+        st.error(" Sistem henüz hazır değil. Lütfen yukarıdaki hataları kontrol edin.")
         st.stop()
     
-    # Kullanıcı mesajını ekle
     st.session_state.messages.append({"role": "user", "content": user_input})
     with st.chat_message("user"):
         st.write(user_input)
 
-    # Yanıtı al
     with st.chat_message("assistant"):
-        with st.spinner("🔍 Mevzuat taranıyor..."):
+        with st.spinner(" Mevzuat taranıyor..."):
             try:
-                # RAG Zincirini çağır
                 response = rag_chain.invoke({"question": user_input})
                 
-                # Yanıtı göster
                 st.write(response)
                 
-                # Asistan yanıtını kaydet
                 st.session_state.messages.append({
                     "role": "assistant", 
                     "content": response
                 })
                 
             except Exception as e:
-                error_msg = f"⚠️ Bir hata oluştu: {str(e)}"
+                error_msg = f" Bir hata oluştu: {str(e)}"
                 st.error(error_msg)
-                st.info("💡 Birkaç saniye bekleyip tekrar deneyin veya sorunuzu yeniden ifade edin.")
+                st.info("Birkaç saniye bekleyip tekrar deneyin veya sorunuzu yeniden ifade edin.")
                 
-                # Hata mesajını kaydet
                 st.session_state.messages.append({
                     "role": "assistant", 
                     "content": error_msg
                 })
 
-# ================================================================
-# 6. SIDEBAR BİLGİLERİ
-# ================================================================
 
 with st.sidebar:
     st.markdown("---")
-    st.markdown("### 📖 Kullanım İpuçları")
+    st.markdown("###  Kullanım İpuçları")
     st.markdown("""
     - Türk hukuku hakkında soru sorun
     - Net ve spesifik sorular sorun
@@ -392,21 +352,21 @@ with st.sidebar:
     """)
     
     st.markdown("---")
-    st.markdown("### ℹ️ Proje Bilgileri")
+    st.markdown("###  Proje Bilgileri")
     st.markdown("""
     **LexMove RAG Chatbot**
     
-    - 🤖 Model: Gemini 2.0 Flash
-    - 📊 Vector DB: ChromaDB
-    - 🧠 Embedding: all-MiniLM-L6-v2
-    - 📚 Dataset: turkish-law-chatbot
+    -  Model: Gemini 2.0 Flash
+    -  Vector DB: ChromaDB
+    -  Embedding: all-MiniLM-L6-v2
+    -  Dataset: turkish-law-chatbot
     """)
     
     st.markdown("---")
-    st.markdown("### 🎓 Akbank GenAI Bootcamp")
+    st.markdown("###  Akbank GenAI Bootcamp")
     st.markdown("*Yeni Nesil Proje Kampı*")
     
-    if st.button("🔄 Sohbeti Temizle"):
+    if st.button(" Sohbeti Temizle"):
         st.session_state["messages"] = [
             {
                 "role": "assistant", 
@@ -415,7 +375,6 @@ with st.sidebar:
         ]
         st.rerun()
     
-    # Footer
     st.markdown("---")
-    st.markdown("🔗 [GitHub](https://github.com/yourusername/lexmove-rag)")
-    st.caption("Made with ❤️ for Akbank Bootcamp")
+    st.markdown("[GitHub](https://github.com/yourusername/lexmove-rag)")
+    st.caption("Made with  for Akbank Bootcamp")
